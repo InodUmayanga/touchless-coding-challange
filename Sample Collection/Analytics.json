@@ -1,6 +1,14 @@
-{
-  "Date": "DDMMYYY",
-  "TotalSessions": "209",
-  "OngoingSessions": "59",
-  "FinishedSessions": "150"
-}
+[
+  {
+    "Date": "DDMMYYY",
+    "TotalSessions": "209",
+    "OngoingSessions": "59",
+    "FinishedSessions": "150"
+  },
+  {
+    "Analytics": {
+      "StartDate": 6001239,
+      "EndDate": 6001239
+    }
+  }
+]

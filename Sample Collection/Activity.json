@@ -1,20 +1,47 @@
-{
-  "Entrance": {
-    "SessionID": 143,
-    "INAgentMACID": "00-14-22-01-63-45",
-    "PlateNumber": {
-      "Image": "/poll/data/date1/img.png",
-      "Number": "ABC1234",
-      "TimeStamp": 6001239
+[
+  {
+    "Entrance": {
+      "SessionID": 143,
+      "INAgentMACID": "00-14-22-01-63-45",
+      "PlateNumber": {
+        "Image": "/poll/data/date1/img.png",
+        "Number": "ABC1234",
+        "TimeStamp": 6001239
+      }
+    },
+    "Exit": {
+      "SessionID": 123,
+      "OUTAgentMACID": "00-14-22-01-31-45",
+      "PlateNumber": {
+        "Image": "/poll/data/date0/img.png",
+        "Number": "ABC1234",
+        "TimeStamp": 5991291
+      }
     }
   },
-  "Exit": {
-    "SessionID": 123,
-    "OUTAgentMACID": "00-14-22-01-31-45",
-    "PlateNumber": {
-      "Image": "/poll/data/date0/img.png",
-      "Number": "ABC1234",
-      "TimeStamp": 5991291
+  {
+    "Activity": {
+      "Exit": {
+        "OUTAgentMACID": "00-14-22-01-63-45",
+        "PlateNumber": {
+          "Image": "/poll/data/date1/img.png",
+          "Number": "PQR444",
+          "TimeStamp": 2222222
+        }
+      }
+    }
+  },
+  {
+    "Activity": {
+      "Entrance": {
+        "SessionID": 205,
+        "INAgentMACID": "00-14-22-01-63-45",
+        "PlateNumber": {
+          "Image": "/poll/data/date1/img.png",
+          "Number": "PQR555",
+          "TimeStamp": 111111
+        }
+      }
     }
   }
-}
+]

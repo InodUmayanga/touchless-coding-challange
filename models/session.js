@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const sessionSchema = mongoose.Schema({
     Type: String,
-    SessionID: Number,
+    // SessionID: Number,
     INAgentMACID: String,
     Platenumber: String,
     Intime: Number,

@@ -4,7 +4,7 @@
     "INAgentMACID": "00-24-22-01-23-45",
     "Platenumber": "ABCD1234",
     "Intime": 53808092,
-    "Outtime": "NA",
+    "Outtime": 0,
     "OUTAgentMACID": "00-64-22-01-23-45",
     "Status": "ongoing"
   },

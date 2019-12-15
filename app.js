@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const EntranceActivity = require('./models/entrance-activity');
+const ExitActivity = require('./models/exit-activity');
 const Session = require('./models/session');
-
 const app = express();
 
 mongoose.connect('mongodb+srv://inod:'
@@ -42,7 +42,7 @@ app.post('/api/enter', (req, res, next) => {
         Platenumber: req.body.Activity.Entrance.PlateNumber.Number,
         Intime: req.body.Activity.Entrance.PlateNumber.TimeStamp,
         Outtime: 0,
-        OUTAgentMACID: "",
+        OUTAgentMACID: "NA",
         Status: "ongoing"
     });
 
@@ -67,27 +67,85 @@ app.post('/api/enter', (req, res, next) => {
 
 app.post('/api/exit', (req, res, next) => {
 
-    Session.findOneAndUpdate(
-        { Platenumber: req.body.Activity.Exit.PlateNumber.Number, Status: "ongoing" },
-        {
-            Status: "ended",
+    const filter = { Platenumber: req.body.Activity.Exit.PlateNumber.Number, Status: "ongoing" };
+
+    const update = {
+        Status: "ended",
+        OUTAgentMACID: req.body.Activity.Exit.OUTAgentMACID,
+        Outtime: req.body.Activity.Exit.PlateNumber.TimeStamp
+    };
+
+
+    Session.findOneAndUpdate(filter, update).then(document => {
+
+        const exitActivity = new ExitActivity({
+            Type: 'exit-activity',
+            // SessionID: document.SessionID,
             OUTAgentMACID: req.body.Activity.Exit.OUTAgentMACID,
-            Outtime: req.body.Activity.Exit.PlateNumber.TimeStamp
-        }
-    ).then(document => {
+            Image: req.body.Activity.Exit.PlateNumber.Image,
+            Platenumber: req.body.Activity.Exit.PlateNumber.Number,
+            Outtime: req.body.Activity.Exit.PlateNumber.TimeStamp,
+        });
+
+        exitActivity.save();
 
         res.status(201).json({
-            UpdatedSession: document
+            document: exitActivity
         });
+
+    });
+
+
+});
+
+app.post('/api/analytics/time', (req, res, next) => {
+
+    const timeFilter = {
+        Intime: { $gte: req.body.Analytics.StartDate },
+        Outtime: { $lte: req.body.Analytics.EndDate }
+    };
+
+    Session.countDocuments(timeFilter, function (err, count) {
+        res.status(201).json({
+            count: count
+        });
+
     });
 });
+
+app.post('/api/analytics/ongoing', (req, res, next) => {
+
+
+    const ongoingFilter = { Status: "ongoing" };
+
+
+    Session.countDocuments(ongoingFilter, function (err, count) {
+        res.status(201).json({
+            count: count
+        });
+
+    });
+});
+
+app.post('/api/analytics/ended', (req, res, next) => {
+
+    const endedFilter = { Status: "ended" };
+
+    Session.countDocuments(endedFilter, function (err, count) {
+        res.status(201).json({
+            count: count
+        });
+
+    });
+});
+
 
 app.get('/api/getActivity', (req, res, next) => {
     Session.find()
         .then(documents => {
             res.status(200).json({
                 message: 'activity fetched successfully',
-                Session: documents
+                ExitActivity: documents
             });
         });
 });

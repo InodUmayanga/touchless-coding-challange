@@ -6,7 +6,7 @@ const exitActivitySchema = mongoose.Schema({
     OUTAgentMACID: String,
     Image: String,
     Platenumber: String,
-    Intime: Number,
+    Outtime: Number,
 });
 
 module.exports = mongoose.model('Exit', exitActivitySchema);
