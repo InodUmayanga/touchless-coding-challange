@@ -1,0 +1,20 @@
+[
+  {
+    "SessionID": 102221,
+    "INAgentMACID": "00-24-22-01-23-45",
+    "Platenumber": "ABCD1234",
+    "Intime": 53808092,
+    "Outtime": "NA",
+    "OUTAgentMACID": "00-64-22-01-23-45",
+    "Status": "ongoing"
+  },
+  {
+    "SessionID": 102222,
+    "OUTAgentMACID": "00-64-27-01-23-45",
+    "Platenumber": "ABFD1234",
+    "Intime": 53808032,
+    "Outtime": 53808032,
+    "INAgentMACID": "00-24-32-01-23-45",
+    "Status": "Ended"
+  }
+]
